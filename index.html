@@ -1,146 +1,147 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Abdul Hannan | Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
-    }
+export default function Portfolio() {
+  const [mounted, setMounted] = useState(false);
 
-    header {
-      padding: 90px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-    }
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-    h1 {
-      font-size: 52px;
-      margin: 0;
-    }
+  return (
+    <div className="bg-black text-white min-h-screen overflow-x-hidden">
+      {/* NAVBAR */}
+      <header className="fixed top-0 w-full z-50 backdrop-blur-md bg-black/40 border-b border-white/10">
+        <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
+          <h1 className="font-bold tracking-wide">AH</h1>
+          <nav className="flex gap-6 text-sm text-gray-300">
+            <a href="#about" className="hover:text-white">About</a>
+            <a href="#skills" className="hover:text-white">Skills</a>
+            <a href="#projects" className="hover:text-white">Projects</a>
+            <a href="#contact" className="hover:text-white">Contact</a>
+          </nav>
+        </div>
+      </header>
 
-    p {
-      color: #94a3b8;
-      font-size: 18px;
-    }
+      {/* HERO */}
+      <section className="h-screen flex items-center justify-center text-center relative">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15),transparent_60%)]" />
 
-    section {
-      padding: 50px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="z-10"
+        >
+          <h1 className="text-5xl md:text-7xl font-bold">
+            Abdul Hannan
+          </h1>
 
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #38bdf8;
-    }
+          <p className="text-gray-400 mt-4 text-lg">
+            Frontend • Backend • App Developer • Designer
+          </p>
 
-    .card {
-      background: #1e293b;
-      padding: 20px;
-      margin: 15px 0;
-      border-radius: 12px;
-      transition: 0.3s;
-    }
+          <div className="flex justify-center gap-4 mt-6">
+            <a className="p-3 rounded-full bg-white/10 hover:bg-white/20" href="#">
+              <Github size={18} />
+            </a>
+            <a className="p-3 rounded-full bg-white/10 hover:bg-white/20" href="#">
+              <Linkedin size={18} />
+            </a>
+            <a className="p-3 rounded-full bg-white/10 hover:bg-white/20" href="#contact">
+              <Mail size={18} />
+            </a>
+          </div>
 
-    .card:hover {
-      transform: translateY(-3px);
-      background: #273449;
-    }
+          <a
+            href="#projects"
+            className="mt-10 inline-flex items-center gap-2 text-sm text-white/70 hover:text-white"
+          >
+            View Work <ArrowRight size={16} />
+          </a>
+        </motion.div>
+      </section>
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-    }
+      {/* ABOUT */}
+      <section id="about" className="max-w-4xl mx-auto px-6 py-24">
+        <motion.h2
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="text-3xl font-bold mb-6"
+        >
+          About
+        </motion.h2>
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #94a3b8;
-      border-top: 1px solid #1e293b;
-    }
+        <p className="text-gray-400 leading-relaxed">
+          I build modern digital experiences with clean UI, strong performance,
+          and scalable architecture. I specialize in creating high-quality
+          websites, applications, and digital solutions that feel fast and premium.
+        </p>
+      </section>
 
-    .highlight {
-      color: #38bdf8;
-    }
-  </style>
-</head>
+      {/* SKILLS */}
+      <section id="skills" className="px-6 py-24 bg-white/5">
+        <h2 className="text-3xl font-bold text-center mb-10">Skills</h2>
 
-<body>
+        <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-4">
+          {[
+            "Next.js",
+            "React",
+            "Tailwind CSS",
+            "Node.js",
+            "MongoDB",
+            "WordPress",
+          ].map((skill) => (
+            <div
+              key={skill}
+              className="p-5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition"
+            >
+              {skill}
+            </div>
+          ))}
+        </div>
+      </section>
 
-<header>
-  <h1>Abdul Hannan</h1>
-  <p>Front-End Developer | Backend Developer | Website Developer | Mobile App Developer</p>
-</header>
+      {/* PROJECTS */}
+      <section id="projects" className="max-w-6xl mx-auto px-6 py-24">
+        <h2 className="text-3xl font-bold mb-10">Projects</h2>
 
-<section>
-  <h2>About Me</h2>
-  <div class="card">
-    I am a passionate developer focused on building modern websites, web applications, and mobile apps.
-    I enjoy turning ideas into real digital products using clean and efficient code.
-  </div>
-</section>
+        <div className="grid md:grid-cols-2 gap-6">
+          {[1, 2, 3, 4].map((item) => (
+            <motion.div
+              key={item}
+              whileHover={{ scale: 1.03 }}
+              className="p-6 rounded-2xl bg-white/5 border border-white/10"
+            >
+              <h3 className="text-xl font-semibold">Project {item}</h3>
+              <p className="text-gray-400 mt-2">
+                High-performance web application with modern UI and smooth UX.
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
-<section>
-  <h2>Skills</h2>
-  <div class="grid">
-    <div class="card">Front-End Development</div>
-    <div class="card">Backend Development</div>
-    <div class="card">Website Development</div>
-    <div class="card">Mobile App Development</div>
-    <div class="card">HTML, CSS, JavaScript</div>
-    <div class="card">WordPress</div>
-  </div>
-</section>
+      {/* CONTACT */}
+      <section id="contact" className="px-6 py-24 text-center">
+        <h2 className="text-3xl font-bold mb-4">Let’s Work Together</h2>
+        <p className="text-gray-400 mb-6">
+          Have a project idea? Let’s build something great.
+        </p>
 
-<section>
-  <h2>Projects</h2>
+        <a
+          href="mailto:example@email.com"
+          className="px-6 py-3 bg-white text-black rounded-full font-medium hover:opacity-80"
+        >
+          Contact Me
+        </a>
+      </section>
 
-  <div class="card">
-    <b>Portfolio Website</b><br>
-    Personal responsive portfolio built with HTML & CSS
-  </div>
-
-  <div class="card">
-    <b>Business Landing Page</b><br>
-    Modern landing page design for a startup concept
-  </div>
-
-  <div class="card">
-    <b>App UI Design</b><br>
-    Mobile app interface design prototype
-  </div>
-</section>
-
-<section>
-  <h2>Services</h2>
-  <div class="grid">
-    <div class="card">Website Development</div>
-    <div class="card">Frontend UI Design</div>
-    <div class="card">Backend APIs</div>
-    <div class="card">Mobile App Development</div>
-  </div>
-</section>
-
-<section>
-  <h2>Contact</h2>
-  <div class="card">
-    Email: your@email.com <br>
-    Instagram: @yourhandle <br>
-    WhatsApp: +92XXXXXXXXXX
-  </div>
-</section>
-
-<footer>
-  © 2026 Abdul Hannan. All rights reserved.
-</footer>
-
-</body>
-</html>
+      {/* FOOTER */}
+      <footer className="text-center text-gray-600 py-10 border-t border-white/10">
+        © 2026 Abdul Hannan. Built with modern web technologies.
+      </footer>
+    </div>
+  );
+}
